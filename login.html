@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESE - Giriş Yap veya Kayıt Ol</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a class="logo">DESE</a>
+        </nav>
+    </header>
+
+    <main class="auth-page-wrapper">
+        <div class="auth-container">
+            
+            <div class="form-wrapper" id="register-form">
+                <h2>Kayıt Ol</h2>
+                
+                <form id="form-register">
+                    <label for="register-name">İsim:</label>
+                    <input type="text" id="register-name" required>
+                    
+                    <label for="register-surname">Soyisim:</label>
+                    <input type="text" id="register-surname" required>
+
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" placeholder="ornek@dogus.edu.tr" required>
+                    
+                    <label for="register-password">Şifre:</label>
+                    <input type="password" id="register-password" placeholder="En az 6 karakter" required>
+                    
+                    <button type="submit">Kayıt Ol</button>
+                </form>
+
+                <p>Zaten hesabın var mı? <a href="#" id="show-login">Giriş Yap</a></p>
+            </div>
+
+            <div class="form-wrapper" id="login-form" style="display:none;">
+                <h2>Giriş Yap</h2>
+                <form id="form-login">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" placeholder="ornek@dogus.edu.tr" required>
+                    
+                    <label for="login-password">Şifre:</label>
+                    <input type="password" id="login-password" placeholder="Şifreniz" required>
+                    
+                    <button type="submit">Giriş Yap</button>
+                </form>
+                <p>Hesabın yok mu? <a href="#" id="show-register">Kayıt Ol</a></p>
+            </div>
+
+            <div id="auth-message"></div>
+
+        </div>
+    </main>
+    
+    <script type="module" src="js/login.js"></script>
+
+</body>
+</html>

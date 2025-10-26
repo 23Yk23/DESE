@@ -1,0 +1,147 @@
+
+.auth-page-wrapper {
+    /* Login'deki ortalama stilini iptal ediyoruz */
+    display: block;
+    min-height: 0;
+    padding: 0;
+}
+
+/* Sayfa içeriğini ortalayan ana konteyner */
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto; /* Ortala */
+    padding: 2rem;
+    display: flex;
+    gap: 2rem; /* Ana içerik ve sidebar arası boşluk */
+}
+
+/* Ana içerik (Etkinlik akışı) */
+.main-content {
+    flex-grow: 1; /* Esne, mevcut alanın çoğunu al */
+    flex-basis: 70%; /* %70 genişlikte başla */
+}
+
+/* Sağ sütun (Kulüp önerileri) */
+.sidebar {
+    flex-basis: 30%; /* %30 genişlikte başla */
+    min-width: 280px; /* Çok küçülmesin */
+}
+
+/* Sağdaki modüller için genel stil */
+.sidebar-widget {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.sidebar-widget h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.75rem;
+}
+
+/* ETKİNLİK KARTI TASARIMI 
+   (Fonksiyon 4 ve 5 için temel)
+*/
+.event-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    overflow: hidden; /* Resmin köşelerini yuvarlatmak için */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.event-card-banner {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Resmi kırp ama sığdır */
+    background-color: #eee;
+}
+
+.event-card-content {
+    padding: 1.5rem;
+}
+
+.event-card-content h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.event-card-info {
+    display: flex;
+    flex-wrap: wrap; /* Küçük ekranda alt satıra insin */
+    gap: 1.5rem; /* Öğeler arası boşluk */
+    margin: 1rem 0;
+    color: #555;
+    font-size: 0.95rem;
+}
+.event-card-info span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* İkon ve yazı arası boşluk */
+}
+
+.event-card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+/* "Katıl" butonu (Fonksiyon 4) */
+.btn-join {
+    background-color: #28a745; /* Yeşil */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+.btn-join:hover {
+    background-color: #218838;
+    text-decoration: none;
+}
+
+/* Navbar'a ekleyeceğimiz yeni butonlar */
+.navbar .btn-create {
+    background-color: #1877f2;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-left: auto; /* Diğer her şeyden sağa ittir */
+    margin-right: 1rem;
+}
+.navbar .btn-create:hover {
+    background-color: #166fe5;
+    text-decoration: none;
+}
+.navbar .btn-logout {
+    background-color: #dc3545; /* Kırmızı */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+}
+.navbar .btn-logout:hover {
+    background-color: #c82333;
+    text-decoration: none;
+}
+
+/* FOUC (Kimlik Doğrulanmamış İçeriğin Anlık Görünmesi) Engelleme */
+/* JavaScript kimliği doğrulayana kadar sayfayı gizle */
+body.auth-pending {
+    display: none;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESE - Ana Sayfa</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="auth-pending">
+
+        <!-- ÜST MENÜ / NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">DESE</a>
+            <a href="#" class="btn-create" id="btn-create-event">
+                <i class="fas fa-plus"></i> Etkinlik Oluştur
+            </a>
+            <!-- Kullanıcı e-posta bilgisi -->
+            <span id="user-email" style="margin-right: 1rem; color: #555;"></span>
+            <!-- Çıkış butonu -->
+            <a href="#" class="btn-logout" id="btn-logout">Çıkış Yap</a>
+        </nav>
+    </header>
+
+
+     <!-- ANA İÇERİK -->
+    <div class="container">
+
+        <main class="main-content">
+            <!-- ÖNE ÇIKAN ETKİNLİK BÖLÜMÜ -->
+            <section id="featured-event">
+                <h2>Öne Çıkan Etkinlik</h2>
+                <div class="event-card">
+                    <img src="https://media.kommunity.com/communities/devnot/events/mobil-yazilim-konferansi-2025-80680ec1/70034/mobil-koyu.png" alt="Etkinlik Afişi" class="event-card-banner">
+                    <div class="event-card-content">
+                        <h2>Büyük Yazılım Konferansı 2025</h2>
+                        <div class="event-card-info">
+                            <span><i class="fas fa-calendar-alt"></i> 30 Ekim 2025, 09:00</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Konferans Salonu A</span>
+                            <span><i class="fas fa-users"></i> 150 / 200 Kişi</span>
+                        </div>
+                        <p>Yapay zeka, web geliştirme ve daha fazlası... Bu etkinliği kaçırmayın!</p>
+                        <div class="event-card-actions">
+                            <span style="font-weight: 600; color: #1877f2;">ÖNE ÇIKAN</span>
+                            <a href="#" class="btn-join">Hemen Katıl</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="events-feed">
+                <h2>Yaklaşan Etkinlikler</h2>
+                <div class="event-card">
+                    <img src="https://kultur.istanbul/gorsel/2022/05/010D2BBC-70EA-402F-83E4-D288DF4D6BDE-1024x683.jpeg" alt="Etkinlik Afişi" class="event-card-banner">
+                    <div class="event-card-content">
+                        <h2>Kampüs Müzik Gecesi</h2>
+                        <div class="event-card-info">
+                            <span><i class="fas fa-calendar-alt"></i> 1 Kasım 2025, 19:00</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Amfi Tiyatro</span>
+                            <span><i class="fas fa-users"></i> 45 / 100 Kişi</span>
+                        </div>
+                        <div class="event-card-actions">
+                            <span><i class="fas fa-tags"></i> Müzik Kulübü</span>
+                            <a href="#" class="btn-join">Katıl</a>
+                        </div>
+                    </div>
+                </div>
+                </section>
+        </main>
+        <!-- SAĞ TARAFTA YAN MENÜ -->
+        <aside class="sidebar">
+            <!-- Kulüp önerileri bölümü -->
+            <div class="sidebar-widget" id="club-recommendations">
+                <h3>Sana Özel Kulüpler</h3>
+                <p>Yakında burada hobilerinize göre kulüp önerileri göreceksiniz. (AI ile)</p>
+                <ul>
+                    <li>Yazılım Kulübü</li>
+                    <li>Müzik Kulübü</li>
+                </ul>
+            </div>
+            <!-- Geri bildirim bölümü -->
+            <div class="sidebar-widget" id="feedback">
+                <h3>Geri Bildirim</h3>
+                <p>Bir sorun mu var veya bir önerin mi var?</p>
+                <a href="#" class="btn-create" style="width: 100%; text-align: center;">Bize Ulaşın</a>
+            </div>
+        </aside>
+<!-- ana js dosyası -->
+    </div> <script type="module" src="js/main.js"></script>
+
+</body>
+</html>

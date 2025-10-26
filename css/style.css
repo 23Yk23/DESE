@@ -1,0 +1,64 @@
+/* GENEL STİLLER - Tüm sayfaları etkiler */
+* {
+    box-sizing: border-box; /* Kutu modelini düzeltir */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5; /* Arka planı biraz daha koyu gri yaptık */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #1877f2; /* Facebook/Meta mavisi, daha modern bir link rengi */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* --------------- */
+/* NAVBAR STİLLERİ */
+/* --------------- */
+header {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 0 2rem; /* Sağına soluna boşluk */
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar {
+    width: 100%;
+    max-width: 1100px; /* İçeriğin çok genişlemesini engeller */
+    margin: 0 auto; /* Konteyneri ortalar */
+    display: flex;
+    align-items: center;
+    height: 65px; /* Navbar yüksekliği */
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #1877f2;
+    text-decoration: none;
+}
+.logo:hover {
+    text-decoration: none;
+}
+
+
+/* --------------- */
+/* ANA İÇERİK ALANI*/
+/* --------------- */
+.auth-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: calc(100vh - 65px); /* Ekran yüksekliği eksi navbar yüksekliği */
+}
