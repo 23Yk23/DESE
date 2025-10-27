@@ -38,7 +38,17 @@ header {
     margin: 0 auto; /* Konteyneri ortalar */
     display: flex;
     align-items: center;
+    justify-content: space-between; /* YENİ EKLENDİ - Bölümleri ayırır */
     height: 65px; /* Navbar yüksekliği */
+}
+
+/* Navbar Bölümleme (Sol-Orta-Sağ) */
+.navbar-left,
+.navbar-center,
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Bölüm içindeki elemanlar arası boşluk */
 }
 
 .logo {

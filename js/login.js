@@ -1,15 +1,22 @@
 // 1. Gerekli fonksiyonları import et
-// auth.js'den 'auth' servisini al
-import { auth } from './auth.js'; 
+// auth.js'den 'auth' ve 'db' servislerini al
+import { auth, db } from './auth.js'; 
 // Firebase'den kayıt, giriş ve doğrulama fonksiyonlarını al
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
   sendEmailVerification,
-  updateProfile // BUNU EKLE
+  updateProfile 
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
-// 2. HTML elemanlarını seç
+// --- YENİ (Firestore) ---
+// doc: Belge referansı oluşturur
+// setDoc: Belgeye veri yazar
+import { doc, setDoc } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+// ----------------------
+
+
+// 2. HTML elemanlarını seç (Değişiklik yok)
 const loginFormWrapper = document.getElementById('login-form');
 const registerFormWrapper = document.getElementById('register-form');
 const formLogin = document.getElementById('form-login');
@@ -18,56 +25,66 @@ const showLoginLink = document.getElementById('show-login');
 const showRegisterLink = document.getElementById('show-register');
 const authMessage = document.getElementById('auth-message');
 
-// 3. Form Değiştirme Linkleri (Giriş Yap <-> Kayıt Ol)
+// 3. Form Değiştirme Linkleri (Değişiklik yok)
 showLoginLink.addEventListener('click', (e) => {
-    e.preventDefault(); // Linkin sayfa yenilemesini engelle
+    e.preventDefault(); 
     loginFormWrapper.style.display = 'block';
     registerFormWrapper.style.display = 'none';
-    authMessage.style.display = 'none'; // Mesajı temizle
+    authMessage.style.display = 'none'; 
 });
 
 showRegisterLink.addEventListener('click', (e) => {
-    e.preventDefault(); // Linkin sayfa yenilemesini engelle
+    e.preventDefault(); 
     loginFormWrapper.style.display = 'none';
     registerFormWrapper.style.display = 'block';
-    authMessage.style.display = 'none'; // Mesajı temizle
+    authMessage.style.display = 'none'; 
 });
 
 
 // 4. KAYIT OLMA İŞLEMİ (GÜNCELLENDİ)
 formRegister.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Formun otomatik gönderilmesini engelle
+    e.preventDefault(); 
     
-    // YENİ ALANLARI OKU
     const name = document.getElementById('register-name').value;
     const surname = document.getElementById('register-surname').value;
     const email = document.getElementById('register-email').value;
     const password = document.getElementById('register-password').value;
-
-    // İsim ve soyisimi birleştir
     const displayName = `${name} ${surname}`;
 
-    // --- @dogus.edu.tr KONTROLÜ ---
     if (!email.endsWith('@dogus.edu.tr')) {
         showMessage('Kayıt olmak için @dogus.edu.tr uzantılı bir e-posta adresi kullanmalısınız.', 'error');
         return;
     }
 
     try {
-        // 1. Kullanıcı oluştur
+        // 1. Kullanıcı oluştur (Authentication)
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // 2. displayname ( isim soyisim i kaydet)
+        // 2. displayname (isim soyisim) kaydet (Authentication)
         await updateProfile(user, {
             displayName: displayName
         });
 
-        // 3. Doğrulama e-postası gönder
+        // --- YENİ: 3. KULLANICI ROLÜNÜ OLUŞTUR (Firestore) ---
+        // 'users' koleksiyonunda, kullanıcının UID'si ile eşleşen bir belge oluştur
+        const userDocRef = doc(db, "users", user.uid);
+        
+        // Bu belgeye verileri yaz
+        await setDoc(userDocRef, {
+            uid: user.uid,
+            email: user.email,
+            displayName: displayName,
+            role: "user" // Varsayılan rol
+            // ileride buraya hobiler vs. eklenebilir
+        });
+        // --------------------------------------------------
+
+        // 4. Doğrulama e-postası gönder
         await sendEmailVerification(user);
         
         showMessage('Kayıt başarılı! Lütfen e-postanızı kontrol ederek hesabınızı doğrulayın.', 'success');
-        formRegister.reset(); // Formu temizle
+        formRegister.reset(); 
 
     } catch (error) {
         showMessage(getFirebaseErrorMessage(error.code), 'error');
@@ -75,7 +92,7 @@ formRegister.addEventListener('submit', async (e) => {
 });
 
 
-// 5. GİRİŞ YAPMA İŞLEMİ
+// 5. GİRİŞ YAPMA İŞLEMİ (GÜNCELLENDİ - E-POSTA KONTROLÜ GEÇİCİ OLARAK KALDIRILDI)
 formLogin.addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -83,34 +100,27 @@ formLogin.addEventListener('submit', async (e) => {
     const password = document.getElementById('login-password').value;
 
     try {
-        // Giriş yapmayı dene veritabanı (firebase) ile 
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // --- GİRİŞ KONTROLÜ: E-POSTA DOĞRULANMIŞ MI? ---
-        if (user.emailVerified) {
-            // Doğrulanmışsa, ana sayfaya yönlendir
-            showMessage('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz...', 'success');
-            setTimeout(() => {
-                window.location.href = 'index.html'; // Ana sayfaya git
-            }, 2000); // delay
-        } else {
-            // Doğrulanmamışsa, hata göster
-            showMessage('Giriş başarısız. Lütfen önce e-posta adresinizi doğrulayın. (Spam kutusunu kontrol edin)', 'error');
-        }
+        // --- KONTROL KALDIRILDI ---
+        // Artık e-posta doğrulaması sorma, doğrudan giriş yap.
+        showMessage('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz...', 'success');
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 2000); 
+        // -------------------------
 
     } catch (error) {
-        // Hatalı giriş (şifre yanlış vb.)
         showMessage(getFirebaseErrorMessage(error.code), 'error');
     }
 });
 
-
-// 6. Yardımcı Fonksiyonlar (Mesaj gösterme ve Hata çevirisi)
+// 6. Yardımcı Fonksiyonlar (Değişiklik yok)
 function showMessage(message, type) {
     authMessage.textContent = message;
-    authMessage.className = type; // css i ayarla succes veya error olarak.
-    authMessage.style.display = 'block'; // mesaj kutusunu görünür yap
+    authMessage.className = type; 
+    authMessage.style.display = 'block'; 
 }
 
 function getFirebaseErrorMessage(errorCode) {

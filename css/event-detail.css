@@ -1,0 +1,223 @@
+/* --------------- */
+/* SAYFA DÜZENİ DÜZELTMESİ */
+/* --------------- */
+
+/* Ana container'ın (.container) içindeki elemanları dikeyde esnetmesini (stretch) engelle. 
+   Bunun yerine elemanları yukarı yasla (flex-start). 
+   Bu, banner'ın dikeyde uzamasını engellemeli. */
+.container {
+    align-items: flex-start; 
+}
+
+/* main.css'den gelen ve bu sayfada sorun çıkaran flex-grow kuralını sıfırla */
+.main-content {
+    flex-grow: 0; 
+}
+
+
+/* --------------- */
+/* ETKİNLİK DETAY SAYFASI */
+/* (Mevcut stilleriniz buradan devam ediyor) */
+/* --------------- */
+
+
+/* ... (diğer stilleriniz) ... */
+
+.event-detail-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    overflow-wrap: break-word; 
+    max-height: 400px; 
+    overflow-y: auto;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background-color: #fdfdfd;
+    margin-top: 1.5rem; /* YENİ EKLENDİ: Üstündeki elemandan boşluk bırak */
+}
+
+/* ... (katılımcı listesi stilleri) ... */
+
+/* --------------- */
+/* ETKİNLİK DETAY SAYFASI */
+/* (Mevcut stilleriniz buradan devam ediyor) */
+/* --------------- */
+
+
+
+/* ... (diğer stilleriniz) ... */
+.event-detail-header {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.event-detail-banner {
+    width: 100%;
+    height: 300px; /* Detay sayfasında banner daha büyük */
+    object-fit: cover;
+    background-color: #eee;
+}
+
+.event-detail-content {
+    padding: 2rem;
+}
+
+.event-detail-content h2 {
+    margin-top: 0;
+}
+
+.event-detail-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem; /* Öğeler arası boşluk */
+    margin: 1.5rem 0;
+    color: #555;
+    font-size: 1.1rem; /* Yazılar biraz daha büyük */
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 1.5rem 0;
+}
+.event-detail-info span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.event-detail-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    overflow-wrap: break-word; /* Yana taşmayı engeller (Kalsın) */
+
+    /* --- YENİ EKLENEN KODLAR (Aşağı taşmayı engeller) --- */
+    
+    /* 1. Maksimum Yükseklik: Bu kutu en fazla 400px yüksekliğinde olsun */
+    max-height: 400px; 
+    
+    /* 2. Dikey Taşma: Eğer 400px'i aşarsa, dikey kaydırma çubuğu (scrollbar) göster */
+    overflow-y: auto;
+    
+    /* 3. Görünüm (Opsiyonel ama şık durur) */
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background-color: #fdfdfd; /* Kutu olduğunu belli etmek için hafif renk */
+}
+
+/* --------------- */
+/* KATILIMCI LİSTESİ (Manager/Admin için) */
+/* --------------- */
+.participant-list-widget {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.participant-list-widget h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.75rem;
+}
+
+/* Katılımcı tablosu stilleri (admin.css'den benzer) */
+.participant-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.participant-table th,
+.participant-table td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.participant-table th {
+    background-color: #f4f6f8;
+    font-weight: 600;
+}
+
+.participant-table tbody tr:nth-of-type(even) {
+    background-color: #f9f9f9;
+}
+
+
+/* --------------- */
+/* SAYFA DÜZENİ DÜZELTMESİ (Nihai Deneme) */
+/* --------------- */
+
+/* main.css'den gelen flex davranışını bu sayfa için tamamen iptal et. */
+.container {
+    display: block; /* Flex'i block'a çevir */
+    /* align-items: flex-start; Artık Gerek Yok */
+}
+
+/* main-content artık flex item değil, normal block eleman. */
+.main-content {
+    /* flex-grow: 0; Artık Gerek Yok */
+    /* flex-basis: auto; Artık Gerek Yok */
+    width: 100%; /* Container içinde tam genişlik kaplasın */
+}
+
+
+/* --------------- */
+/* ETKİNLİK DETAY SAYFASI */
+/* (Mevcut stilleriniz buradan devam ediyor) */
+/* --------------- */
+
+
+.event-detail-banner {
+    width: 100%;
+    height: 300px; 
+    object-fit: cover;
+    background-color: #eee;
+}
+
+.event-detail-content {
+    padding: 2rem;
+}
+
+.event-detail-content h2 {
+    margin-top: 0;
+}
+
+.event-detail-info {
+    /* ... (değişiklik yok) ... */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem; 
+    margin: 1.5rem 0;
+    color: #555;
+    font-size: 1.1rem; 
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 1.5rem 0;
+}
+.event-detail-info span {
+     /* ... (değişiklik yok) ... */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.event-detail-description { 
+    /* ... (değişiklik yok) ... */
+    font-size: 1.1rem;
+    line-height: 1.6;
+    overflow-wrap: break-word; 
+    max-height: 400px; 
+    overflow-y: auto;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background-color: #fdfdfd;
+    margin-top: 1.5rem; /* Üst boşluk eklendi */
+}
+
+/* ... (katılımcı listesi stilleri - değişiklik yok) ... */

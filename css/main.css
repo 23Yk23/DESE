@@ -121,7 +121,6 @@
     padding: 0.5rem 1rem;
     border-radius: 6px;
     font-weight: 600;
-    margin-left: auto; /* Diğer her şeyden sağa ittir */
     margin-right: 1rem;
 }
 .navbar .btn-create:hover {
@@ -144,4 +143,45 @@
 /* JavaScript kimliği doğrulayana kadar sayfayı gizle */
 body.auth-pending {
     display: none;
+}
+
+/* --------------- */
+/* ADMİN SİL BUTONU */
+/* --------------- */
+.btn-delete-event {
+    background-color: #dc3545; /* Kırmızı */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+}
+.btn-delete-event:hover {
+    background-color: #c82333;
+    text-decoration: none;
+}
+
+/* --------------- */
+/* GEÇMİŞ ETKİNLİK */
+/* --------------- */
+#past-events .event-card {
+    opacity: 0.7; /* Geçmiş etkinlikleri biraz soluk göster */
+}
+#past-events .event-card:hover {
+    opacity: 1; /* Üzerine gelince netleşsin */
+}
+
+/* --------------- */
+/* ETKİNLİK DETAY LİNKİ */
+/* --------------- */
+.event-title-link {
+    text-decoration: none; /* Alt çizgiyi kaldır */
+    color: inherit; /* Yazı rengini (.event-card-content'den) miras al (siyah) */
+}
+.event-title-link:hover h2 {
+    color: #1877f2; /* Linkin üzerine gelince başlık mavi olsun */
+    text-decoration: underline;
 }

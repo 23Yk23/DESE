@@ -1,0 +1,174 @@
+/* --------------- */
+/* MODAL (POPUP) STİLLERİ */
+/* --------------- */
+
+/* Modalın arkasını karartan arka plan */
+.modal-backdrop {
+    display: none; /* Varsayılan olarak gizli */
+    position: fixed; /* Ekranı kaplar */
+    z-index: 1000; /* Diğer her şeyin üstünde */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Gerekirse kaydırma çubuğu */
+    background-color: rgba(0, 0, 0, 0.6); /* Yarı saydam siyah */
+}
+
+/* Modalın kendisi (içerik kutusu) */
+.modal-content {
+    background-color: #fefefe;
+    margin: 8% auto; /* Üstten %8 boşluk, yatayda ortalı */
+    padding: 2.5rem;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px; /* Maksimum genişlik */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Kapatma (X) butonu */
+.modal-close {
+    color: #aaa;
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Modal içindeki form stilleri */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; /* Form elemanları arası boşluk */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="datetime-local"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+.form-group input[type="file"] {
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+}
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical; /* Sadece dikeyde büyüsün */
+}
+
+/* Tarih ve Kapasiteyi yan yana koymak için */
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+.form-row .form-group {
+    flex: 1; /* Eşit genişlikte paylaşsınlar */
+}
+
+/* Modal butonları (Oluştur, İptal) */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.btn-modal-cancel {
+    padding: 0.75rem 1.5rem;
+    background-color: #6c757d; /* Gri */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-modal-cancel:hover {
+    background-color: #5a6268;
+}
+
+.btn-modal-submit {
+    padding: 0.75rem 1.5rem;
+    background-color: #28a745; /* Yeşil */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-modal-submit:hover {
+    background-color: #218838;
+}
+.btn-modal-submit:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+
+/* Yüklenme ve hata mesajları */
+#modal-status {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 600;
+    display: none; /* Başlangıçta gizli */
+}
+#modal-status.success {
+    color: #28a745;
+    display: block;
+}
+#modal-status.error {
+    color: #dc3545;
+    display: block;
+}
+
+
+/* Modal açılış animasyonu */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
