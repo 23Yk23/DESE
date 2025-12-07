@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESE - Etkinlik Detayı</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/event-detail.css">
+    <link rel="stylesheet" href="css/modal.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="auth-pending"> 
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">DESE</a>
+            <a href="index.html" class="btn-create" style="background-color: #17a2b8;">
+                <i class="fas fa-home"></i> Ana Sayfaya Dön
+            </a>
+            <span id="user-email" style="margin-left: auto; margin-right: 1rem; color: #555;"></span>
+            <a href="#" class="btn-logout" id="btn-logout">Çıkış Yap</a>
+        </nav>
+    </header>
+
+     <div class="container">
+        
+        <main class="main-content"> 
+            
+            <div id="event-detail-container">
+            
+            </div>
+
+          
+            <div class="sidebar-widget participant-list-widget" id="participant-list-section" style="display: none; margin-top: 2rem;">
+                <h3>Katılımcı Listesi</h3>
+                
+                <table class="participant-table">
+                    <thead>
+                        <tr>
+                            <th>İsim Soyisim</th>
+                            <th>E-posta</th>
+                            <th>Katılma Tarihi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="participant-list-body">
+                        </tbody>
+                </table>
+                <div id="participant-list-status"></div>
+            </div>
+
+        </main>
+    </div>
+    
+    
+    <script type="module" src="js/event-detail.js"></script>
+<div id="edit-event-modal" class="modal-backdrop">
+        <div class="modal-content">
+            
+            <span class="modal-close" id="edit-modal-close-button">&times;</span>
+            
+            <h2>Etkinliği Düzenle</h2>
+            
+          
+            <form id="edit-event-form" class="modal-form">
+                
+
+                <input type="hidden" id="edit-event-id"> 
+
+                <div class="form-group">
+                    <label for="edit-event-title">Etkinlik Başlığı:</label>
+                    <input type="text" id="edit-event-title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-event-description">Açıklama:</label>
+                    <textarea id="edit-event-description" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-event-date">Tarih ve Saat:</label>
+                        <input type="datetime-local" id="edit-event-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-event-capacity">Kapasite (Kişi):</label>
+
+                        <input type="number" id="edit-event-capacity" min="1" required> 
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-event-location">Yer (Konum):</label>
+                    <input type="text" id="edit-event-location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-event-club">Düzenleyen Kulüp:</label>
+                    <select id="edit-event-club" required>
+
+                        <option value="" disabled selected>-- Kulüp Seçin --</option>
+                        <option value="Bilişim Kulübü">Bilişim Kulübü</option>
+
+                        <option value="Diğer">Diğer...</option>
+                    </select>
+                </div>
+                
+                 <div class="form-group">
+                    <label for="edit-event-tags">Etiketler (Virgülle ayırın):</label>
+                    <input type="text" id="edit-event-tags" placeholder="örn: teknoloji, konferans">
+                </div>
+
+
+                 <div class="form-group">
+                    <label for="edit-event-banner">Yeni Afiş Yükle (Değiştirmek istemiyorsanız boş bırakın):</label>
+                    <input type="file" id="edit-event-banner" accept="image/png, image/jpeg">
+                </div> 
+                
+                <div id="edit-modal-status"></div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-modal-cancel" id="edit-modal-cancel-button">İptal</button>
+                    <button type="submit" class="btn-modal-submit" id="edit-modal-save-button">Değişiklikleri Kaydet</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <script type="module" src="js/event-detail.js"></script>
+</body>
+</html>

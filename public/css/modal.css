@@ -172,3 +172,77 @@
         transform: translateY(0);
     }
 }
+
+
+#feedback-modal-status {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 600;
+    display: none; /* Başlangıçta gizli */
+}
+
+/* (modal.css'den kopyalandı) */
+#feedback-modal-status.success {
+    color: #28a745; /* Yeşil */
+    display: block;
+}
+#feedback-modal-status.error {
+    color: #dc3545; /* Kırmızı */
+    display: block;
+}
+#feedback-modal-status.loading {
+    color: #555; /* Normal yazı rengi */
+    display: block;
+}
+
+
+
+/* Hobi Sohbet Modalı için ek stiller */
+#hobby-chat-modal-status {
+    text-align: center;
+    margin-top: 0.5rem; /* Üst boşluğu azalt */
+    margin-bottom: 1rem; /* Alt boşluğu artır */
+    font-weight: 600;
+    display: none; /* Başlangıçta gizli */
+}
+#hobby-chat-modal-status.success { color: #28a745; display: block; }
+#hobby-chat-modal-status.error { color: #dc3545; display: block; }
+#hobby-chat-modal-status.loading { color: #555; display: block; }
+
+/* Ekran okuyucular için etiket gizleme */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Sidebar içindeki Hobi Güncelleme Butonu için özel stil */
+#btn-update-hobbies {
+    background-color: #6c757d; /* Koyu Gri (Bootstrap Secondary) */
+    color: white;
+    padding: 0.6rem 1rem; /* Biraz daha küçük padding */
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: inline-block; /* Tam genişlik olmasın */
+    width: auto; /* Genişliği içeriğe göre ayarla */
+    margin-top: 1rem; /* Üst boşluk kalsın */
+    text-align: center; /* Yazıyı ortala */
+}
+
+#btn-update-hobbies:hover {
+    background-color: #5a6268; /* Hover rengi */
+    text-decoration: none; /* Alt çizgiyi kaldır */
+}
+
+#btn-update-hobbies i {
+    margin-right: 0.5rem; /* İkon ile yazı arası boşluk */
+}
