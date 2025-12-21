@@ -1,7 +1,7 @@
 // 1. Gerekli fonksiyonları import et
-// auth.js'den 'auth' ve 'db' servislerini al
+//  auth.js'den 'auth' ve 'db' servislerini al
 import { auth, db } from './auth.js'; 
-// Firebase'den kayıt, giriş ve doğrulama fonksiyonlarını al
+//  Firebase'den kayıt, giriş ve doğrulama fonksiyonlarını al
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 

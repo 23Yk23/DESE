@@ -1,5 +1,5 @@
 // 1. Gerekli fonksiyonları import et
-// (Tüm fonksiyonları auth.js'den alıyoruz)
+//  (Tüm fonksiyonları auth.js'den alıyoruz)
 import { 
   auth, 
   db,

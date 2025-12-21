@@ -148,7 +148,7 @@ body.auth-pending {
 /* --------------- */
 /* ADMİN SİL BUTONU */
 /* --------------- */
-.btn-delete-event {
+.btn-cancel-event {
     background-color: #dc3545; /* Kırmızı */
     color: white;
     padding: 0.5rem 1rem;
@@ -159,7 +159,7 @@ body.auth-pending {
     cursor: pointer;
     border: none;
 }
-.btn-delete-event:hover {
+.btn-cancel-event:hover {
     background-color: #c82333;
     text-decoration: none;
 }
@@ -184,4 +184,24 @@ body.auth-pending {
 .event-title-link:hover h2 {
     color: #1877f2; /* Linkin üzerine gelince başlık mavi olsun */
     text-decoration: underline;
+}
+
+/* --------------- */
+/* ETKİNLİK ETİKETLERİ */
+/* --------------- */
+.event-card-tags {
+    margin-top: 0.75rem; /* Üstündeki bilgi satırından boşluk */
+    margin-bottom: 0.75rem; /* Altındaki açıklamadan boşluk */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem; /* Etiketler arası boşluk */
+}
+
+.event-tag {
+    background-color: #e9ecef; /* Açık gri */
+    color: #495057; /* Koyu gri yazı */
+    padding: 0.25rem 0.6rem;
+    border-radius: 1rem; /* Hap şeklinde */
+    font-size: 0.8rem;
+    font-weight: 500;
 }

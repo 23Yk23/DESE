@@ -52,3 +52,40 @@
 .user-table-status.success {
     color: #28a745; /* Yeşil */
 }
+
+/* Geri bildirim tablosundaki mesaj sütununun genişliğini sınırlar */
+.feedback-table .feedback-message-column {
+    width: 40%; /* Genişliği ayarla */
+}
+
+/* Mesaj hücresi için stiller */
+.feedback-message-cell {
+    max-width: 300px; /* Maksimum genişlik */
+    white-space: pre-wrap; /* Satır sonlarını koru */
+    word-wrap: break-word; /* Uzun kelimeleri kır */
+    vertical-align: top; /* İçeriği üste yasla */
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Durum select kutusu için (admin.js'de oluşturulacak) */
+.feedback-status-select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+/* Geri bildirim silme butonu */
+.btn-delete-feedback {
+    background-color: #dc3545; /* Kırmızı */
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+.btn-delete-feedback:hover {
+    background-color: #c82333;
+}

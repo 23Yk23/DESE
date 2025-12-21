@@ -221,3 +221,85 @@
 }
 
 /* ... (katılımcı listesi stilleri - değişiklik yok) ... */
+
+/* --------------- */
+/* ETKİNLİK DÜZENLE BUTONU */
+/* --------------- */
+/* ... (dosyanın başı aynı) ... */
+
+/* ETKİNLİK DÜZENLE BUTONU */
+/* --------------- */
+.btn-edit-event {
+    background-color: #ffc107; /* Sarı */
+    color: #212529; /* Koyu yazı */
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    /* margin-right: 1rem; -> kaldırıldı, sarmalayıcıya taşındı */
+    display: none; /* Varsayılan olarak gizli */
+}
+.btn-edit-event:hover {
+    background-color: #e0a800;
+    text-decoration: none;
+}
+
+/* --------------- */
+/* YENİ: ETKİNLİK İPTAL BUTONU (Detay Sayfası) */
+/* --------------- */
+.btn-cancel-event {
+    background-color: #dc3545; /* Kırmızı */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    display: none; /* Varsayılan olarak gizli */
+}
+.btn-cancel-event:hover {
+    background-color: #c82333;
+    text-decoration: none;
+}
+
+/* --------------- */
+/* YENİ: YÖNETİCİ BUTON SARMALAYICI */
+/* --------------- */
+/* Düzenle ve İptal Et butonlarını yan yana getirir */
+.event-detail-admin-actions {
+    display: flex;
+    flex-wrap: wrap; /* Küçük ekranda alt satıra insin */
+    gap: 1rem; /* Butonlar arası boşluk */
+    margin-top: 1.5rem; /* Üstündeki bilgiden ayır */
+    margin-bottom: 1.5rem; /* Altındaki açıklamadan ayır */
+}
+
+
+
+/* YENİ: ÖNE ÇIKAN BUTON STİLİ */
+.btn-feature-event {
+    background-color: #007bff; /* Mavi (Bootstrap Primary) */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    display: none; /* Varsayılan olarak gizli */
+}
+.btn-feature-event:hover {
+    background-color: #0069d9;
+    text-decoration: none;
+}
+
+/* Butonun aktif (zaten öne çıkan) hali */
+.btn-feature-event.featured {
+    background-color: #6c757d; /* Gri */
+}
+.btn-feature-event.featured:hover {
+    background-color: #5a6268;
+}

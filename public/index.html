@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESE - Ana Sayfa</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/modal.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="auth-pending">
+
+    <header>
+        <nav class="navbar">
+            
+            <div class="navbar-left">
+                <a href="index.html" class="logo">DESE</a>
+            </div>
+
+            <div class="navbar-center">
+                <a href="#" class="btn-create" id="btn-create-event" style="display: none;">
+                    <i class="fas fa-plus"></i> Etkinlik Oluştur
+                </a>
+                <a href="admin.html" class="btn-create" id="btn-admin-panel" style="display: none; background-color: #343a40;">
+                    <i class="fas fa-cog"></i> Admin Panel
+                </a>
+            </div>
+
+            <div class="navbar-right">
+                <span id="user-email" style="margin-right: 1rem; color: #555;"></span>
+                <a href="#" class="btn-logout" id="btn-logout">Çıkış Yap</a>
+            </div>
+
+        </nav>
+    </header>
+
+
+     <div class="container">
+
+        <main class="main-content">
+            <section id="featured-event">
+                <h2>Öne Çıkan Etkinlik</h2>
+            </section>
+
+            <section id="events-feed">
+                <h2>Yaklaşan Etkinlikler</h2>
+            </section>
+            
+            <section id="past-events">
+                <h2>Geçmiş Etkinlikler</h2>
+            </section>
+            </main>
+        <aside class="sidebar">
+            <div class="sidebar-widget" id="club-recommendations">
+                <h3>Sana Özel Kulüpler</h3>
+                <p>Yakında burada hobilerinize göre kulüp önerileri göreceksiniz. (AI ile)</p>
+                <ul>
+                    <li>Yazılım Kulübü</li>
+                    <li>Müzik Kulübü</li>
+                </ul>
+                
+                <button class="btn-create" id="btn-update-hobbies">
+                    <i class="fas fa-comments"></i> Hobilerini Güncelle
+                </button>
+                </div>
+            <div class="sidebar-widget" id="feedback">
+                <h3>Geri Bildirim</h3>
+                <p>Bir sorun mu var veya bir önerin mi var?</p>
+                <a href="#" class="btn-create" id="btn-open-feedback" style="width: 100%; text-align: center;">Bize Ulaşın</a>
+            </div>
+        </aside>
+    </div> <div id="create-event-modal" class="modal-backdrop">
+        <div class="modal-content">
+            
+            <span class="modal-close" id="modal-close-button">&times;</span>
+            
+            <h2>Yeni Etkinlik Oluştur</h2>
+            
+            <form id="create-event-form" class="modal-form">
+                
+                <div class="form-group">
+                    <label for="event-title">Etkinlik Başlığı:</label>
+                    <input type="text" id="event-title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event-description">Açıklama:</label>
+                    <textarea id="event-description" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="event-date">Tarih ve Saat:</label>
+                        <input type="datetime-local" id="event-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-capacity">Kapasite (Kişi):</label>
+                        <input type="number" id="event-capacity" min="1" placeholder="örn: 50" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="event-location">Yer (Konum):</label>
+                    <input type="text" id="event-location" placeholder="örn: Konferans Salonu A" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="event-club">Düzenleyen Kulüp:</label>
+                    <select id="event-club" required>
+                        <option value="" disabled selected>-- Kulüp Seçin --</option>
+                        <option value="Bilişim Kulübü">Bilişim Kulübü</option>
+                        <option value="Mühendislik Kulüpleri">Mühendislik Kulüpleri</option>
+                        <option value="Tasarım Kulüpleri">Tasarım Kulüpleri</option>
+                        <option value="Sanat Kulüpleri">Sanat Kulüpleri</option>
+                        <option value="Spor Kulüpleri">Spor Kulüpleri</option>
+                        <option value="Sosyal Sorumluluk Kulüpleri">Sosyal Sorumluluk Kulüpleri</option>
+                        <option value="Kariyer & Girişimcilik Kulüpleri">Kariyer & Girişimcilik Kulüpleri</option>
+                        <option value="Hukuk Kulübü">Hukuk Kulübü</option>
+                        <option value="Psikoloji Kulübü">Psikoloji Kulübü</option>
+                        <option value="Edebiyat & Felsefe Kulüpleri">Edebiyat & Felsefe Kulüpleri</option>
+                        <option value="Uluslararası Öğrenci Kulübü">Uluslararası Öğrenci Kulübü</option>
+                        <option value="Diğer">Diğer...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="event-tags">Etiketler (Virgülle ayırın):</label>
+                    <input type="text" id="event-tags" placeholder="örn: teknoloji, konferans, ücretsiz">
+                </div>
+                <div class="form-group">
+                    <label for="event-banner">Etkinlik Afişi (Banner):</label>
+                    <input type="file" id="event-banner" accept="image/png, image/jpeg" required>
+                </div>
+                
+                <div id="modal-status"></div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-modal-cancel" id="modal-cancel-button">İptal</button>
+                    <button type="submit" class="btn-modal-submit" id="modal-submit-button">Oluştur</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div id="feedback-modal" class="modal-backdrop">
+        <div class="modal-content">
+            
+            <span class="modal-close" id="feedback-modal-close-button">&times;</span>
+            
+            <h2>Geri Bildirim Gönder</h2>
+            
+            <form id="form-feedback" class="modal-form">
+                
+                <div class="form-group">
+                    <label for="feedback-type">Bildirim Türü:</label>
+                    <select id="feedback-type" required>
+                        <option value="" disabled selected>-- Tür Seçin --</option>
+                        <option value="Oneri">Öneri</option>
+                        <option value="Sikayet">Şikayet / Hata Bildirimi</option>
+                        <option value="Diger">Diğer</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="feedback-message">Mesajınız:</label>
+                    <textarea id="feedback-message" rows="5" placeholder="Lütfen düşüncelerinizi detaylıca açıklayın..." required></textarea>
+                </div>
+                
+                <div id="feedback-modal-status"></div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-modal-cancel" id="feedback-modal-cancel-button">İptal</button>
+                    <button type="submit" class="btn-modal-submit" id="feedback-modal-submit-button">Gönder</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <div id="hobby-chat-modal" class="modal-backdrop">
+        <div class="modal-content" style="max-width: 450px;"> <span class="modal-close" id="hobby-chat-modal-close-button">&times;</span>
+            
+            <h2><i class="fas fa-robot" style="margin-right: 0.5rem;"></i> Hobi Asistanı</h2>
+            
+            <div class="hobby-chat-messages" style="margin-bottom: 1.5rem; padding: 1rem; background-color:#f8f9fa; border-radius: 6px;">
+                 <p>Merhaba! Size daha iyi kulüp önerileri sunabilmem için ilgi alanlarınızı ve hobilerinizi öğrenmek istiyorum.</p>
+                 <p>Lütfen bana virgülle ayırarak yazabilir misiniz? 👇</p>
+                 <small><i>(Örn: yazılım, müzik, voleybol, fotoğrafçılık)</i></small>
+            </div>
+
+            <form id="form-hobby-chat" class="modal-form">
+                
+                <div class="form-group">
+                    <label for="hobby-input" class="sr-only">Hobilerinizi girin:</label> <input type="text" id="hobby-input" placeholder="Hobilerinizi buraya yazın..." required>
+                </div>
+                
+                <div id="hobby-chat-modal-status" style="min-height: 20px;"></div> <div class="modal-actions" style="border-top: none; padding-top: 0;"> <button type="submit" class="btn-modal-submit" id="hobby-chat-modal-submit-button" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Gönder & Kaydet
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <script type="module" src="js/main.js"></script> </body>
+</html>
+
+
+
+    <script type="module" src="js/main.js"></script>
+
+    <!-- </body> kapanışından hemen ÖNCE ekle -->
+<div id="global-error-banner" style="display:none;position:fixed;left:0;right:0;top:0;padding:10px;background:#ffe6e6;color:#7a0000;z-index:9999;font-weight:600;">
+  Bir hata oluştu. Sayfayı yenileyin veya birazdan tekrar deneyin.
+</div>
+
+<script>
+  // Beyaz ekranı gizleyen kilidi kazaen açık kalırsa 5 sn sonra kaldır
+  setTimeout(() => document.body.classList.remove('auth-pending'), 5000);
+
+  // Global JS hata yakalayıcı
+  window.addEventListener('error', () => {
+    document.getElementById('global-error-banner').style.display = 'block';
+    document.body.classList.remove('auth-pending');
+  });
+  window.addEventListener('unhandledrejection', () => {
+    document.getElementById('global-error-banner').style.display = 'block';
+    document.body.classList.remove('auth-pending');
+  });
+</script>
+
+<!-- ana bundle en sonda ve module+defer -->
+<script type="module" defer src="main.js"></script>
+
+
+</body>
+</html>

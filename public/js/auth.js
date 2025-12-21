@@ -2,11 +2,17 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-storage.js";
+<<<<<<< HEAD:js/auth.js
 
-// --- GÜNCELLENDİ: TÜM FIRESTORE FONKSİYONLARI BURADA TOPLANDI ---
+//  --- GÜNCELLENDİ: TÜM FIRESTORE FONKSİYONLARI BURADA TOPLANDI ---
 import { 
+=======
+// --- BURASI DOĞRU, EKLEMİŞSİN ---
+import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-functions.js";
+// ---------------------------------
+import {
+>>>>>>> 9a91af72a3231b68d8afdbf26128cc74e21d039a:public/js/auth.js
     getFirestore,
-    // Temel Fonksiyonlar
     doc,
     getDoc,
     setDoc,
@@ -17,14 +23,13 @@ import {
     orderBy,
     deleteDoc,
     updateDoc,
-    // İşlem (Transaction) Fonksiyonları
+    where,          // Burası da doğru
+    limit,          // Burası da doğru
     runTransaction,
     increment,
-    // Zaman Fonksiyonları
-    serverTimestamp, // Hatanın kaynağı buydu
+    serverTimestamp,
     Timestamp
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
-// -----------------------------------------------------------------
 
 // Firebase config bilgileirm (Değişiklik yok)
 const firebaseConfig = {
@@ -40,10 +45,13 @@ const firebaseConfig = {
 // Başlat komutu.
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const storage = getStorage(app); 
+export const storage = getStorage(app);
 export const db = getFirestore(app);
+// --- 1. YENİ SATIR: Functions servisini başlat ---
+export const functions = getFunctions(app, 'europe-west1'); // <-- BU SATIRI EKLE
+// ------------------------------------------------
 
-// --- YENİ: TÜM FIRESTORE FONKSİYONLARINI EXPORT ET ---
+// --- TÜM FONKSİYONLARI EXPORT ET ---
 export {
     doc,
     getDoc,
@@ -55,9 +63,14 @@ export {
     orderBy,
     deleteDoc,
     updateDoc,
+    where,
+    limit,
     runTransaction,
     increment,
     serverTimestamp,
-    Timestamp
+    Timestamp,
+    // --- 2. YENİ EKLEME: httpsCallable'ı export et ---
+    httpsCallable // <-- BU SATIRI EKLE (Virgülüne dikkat et)
+    // ------------------------------------------------
 };
 // --------------------------------------------------

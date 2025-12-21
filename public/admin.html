@@ -19,7 +19,7 @@
     </header>
 
 
-     <div class="container">
+       <div class="container">
         <main class="main-content" style="flex-basis: 100%;"> <h2>Admin Panel</h2>
             <p>Bu sayfa sadece 'admin' rolüne sahip kullanıcılar tarafından görülebilir.</p>
             
@@ -30,9 +30,11 @@
                     <thead>
                         <tr>
                             <th>İsim Soyisim</th>
-                            <th>E-posta</th>
+                            <th>E-Posta</th>
                             <th>Rolü</th>
                             <th>Rolü Değiştir</th>
+
+
                         </tr>
                     </thead>
                     <tbody id="user-list-body">
@@ -40,6 +42,26 @@
                 </table>
                 
                 <div id="user-table-status">Yükleniyor...</div>
+
+            </div>
+            <div class="sidebar-widget feedback-management-widget" style="margin-top: 2rem;">
+                <h3>Gelen Geri Bildirimler</h3>
+                
+                <table class="user-table feedback-table">
+                    <thead>
+                        <tr>
+                            <th>Tarih</th>
+                            <th>Gönderen</th>
+                            <th>Tür</th>
+                            <th class="feedback-message-column">Mesaj</th>
+                            <th>Durum</th>
+                            <th>Eylemler</th> </tr>
+                    </thead>
+                    <tbody id="feedback-list-body">
+                        </tbody>
+                </table>
+                
+                <div id="feedback-table-status" class="user-table-status">Yükleniyor...</div>
 
             </div>
 
