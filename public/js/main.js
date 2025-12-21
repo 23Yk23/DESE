@@ -177,32 +177,47 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // EVENT DELEGATION (İptal Et, Katıl, Vazgeç)
     const mainContent = document.querySelector('.main-content');
-    mainContent.addEventListener('click', async (e) => {
-        const user = auth.currentUser;
-        if (!user) return; 
-        if (e.target.classList.contains('btn-cancel-event')) {
-            e.preventDefault();
-            const eventCard = e.target.closest('.event-card');
-            const eventId = eventCard.dataset.id;
-            const eventTitle = eventCard.querySelector('h2').textContent;
-            if (confirm(`'${eventTitle}' etkinliğini İPTAL ETMEK istediğinizden emin misiniz?`)) {
-                await cancelEvent(eventId, user);
-            }
-        }
-        if (e.target.classList.contains('btn-join')) {
-            e.preventDefault();
-            e.target.disabled = true; e.target.textContent = "İşleniyor...";
-            const eventId = e.target.closest('.event-card').dataset.id;
-            await joinEvent(eventId, user);
-        }
-        if (e.target.classList.contains('btn-leave')) {
-            e.preventDefault();
-            e.target.disabled = true; e.target.textContent = "İşleniyor...";
-            const eventId = e.target.closest('.event-card').dataset.id;
-            await leaveEvent(eventId, user);
-        }
+
+if (mainContent) {
+  mainContent.addEventListener('click', async (e) => {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    if (e.target.classList.contains('btn-cancel-event')) {
+      e.preventDefault();
+      const eventCard = e.target.closest('.event-card');
+      if (!eventCard) return;
+      const eventId = eventCard.dataset.id;
+      const eventTitle = eventCard.querySelector('h2')?.textContent || '';
+      if (confirm(`'${eventTitle}' etkinliğini İPTAL ETMEK istediğinizden emin misiniz?`)) {
+        await cancelEvent(eventId, user);
+      }
+    }
+
+    if (e.target.classList.contains('btn-join')) {
+      e.preventDefault();
+      e.target.disabled = true;
+      e.target.textContent = "İşleniyor...";
+      const card = e.target.closest('.event-card');
+      if (!card) return;
+      const eventId = card.dataset.id;
+      await joinEvent(eventId, user);
+    }
+
+    if (e.target.classList.contains('btn-leave')) {
+      e.preventDefault();
+      e.target.disabled = true;
+      e.target.textContent = "İşleniyor...";
+      const card = e.target.closest('.event-card');
+      if (!card) return;
+      const eventId = card.dataset.id;
+      await leaveEvent(eventId, user);
+    }
+  });
+}
+
     });
-});
+
 
 
 // 5. ETKİNLİK FORMU GÖNDERME
@@ -649,12 +664,25 @@ async function loadClubRecommendations() {
   try {
     const getRecommendationsFunction = httpsCallable(functions, 'getClubRecommendationsGenkit');
     
-    // 8 saniye timeout ile fonksiyonu çağır
-    const result = await withTimeout(
-        getRecommendationsFunction({}), // Boş obje yolla (inputSchema undefined olduğu için)
-        8000, // 8 saniye timeout
-        'AI_Call'
-    );
+   // Kullanıcının hobilerini al
+const user = auth.currentUser;
+let hobbies = [];
+
+if (user) {
+  try {
+    const snap = await getDoc(doc(db, "users", user.uid));
+    hobbies = snap.data()?.hobbies || [];
+  } catch (e) {
+    console.warn("Hobiler okunamadı:", e);
+  }
+}
+
+const result = await withTimeout(
+  getRecommendationsFunction({ hobbies }),
+  8000,
+  'AI_Call'
+);
+
 
     const recommendations = result?.data?.recommendations || [];
     listElement.innerHTML = ''; // Listeyi temizle
@@ -676,7 +704,10 @@ async function loadClubRecommendations() {
     console.error("AI kulüp önerileri alınırken hata:", error);
     
     // Hata timeout ise veya başka bir "INTERNAL" hataysa
-    if (error.code === 'internal' || error.message === 'AI_Call_TIMEOUT') {
+    if (
+  String(error?.code || '').includes('internal') ||
+  String(error?.message || '').includes('AI_Call_TIMEOUT')
+) {
         console.warn("AI hatası veya timeout. Kural tabanlı yedek sisteme geçiliyor...");
         initialParagraph.textContent = 'AI yanıt vermedi. Basit öneriler getiriliyor:';
         listElement.innerHTML = '';
